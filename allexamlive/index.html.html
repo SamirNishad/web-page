@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AllExam.com – India's #1 Exam & Job Alert Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ============================================================
+   DESIGN TOKENS & RESET
+   ============================================================ */
+:root {
+  --navy:       #0B1D3A;
+  --indigo:     #1A3C6B;
+  --blue:       #1E6DC8;
+  --sky:        #3B9EFF;
+  --cyan:       #00C8E0;
+  --gold:       #F5A623;
+  --orange:     #FF6B35;
+  --green:      #22C55E;
+  --red:        #EF4444;
+  --purple:     #7C3AED;
+  --teal:       #0D9488;
+  --pink:       #EC4899;
+  --white:      #FFFFFF;
+  --off-white:  #F0F4FA;
+  --light-gray: #E2EAF4;
+  --mid-gray:   #8FA5C2;
+  --dark-text:  #0D1B2E;
+  --body-text:  #3A506B;
+
+  --font-head:  'Sora', sans-serif;
+  --font-body:  'DM Sans', sans-serif;
+
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
+
+  --shadow-sm:  0 2px 8px rgba(11,29,58,.08);
+  --shadow-md:  0 6px 24px rgba(11,29,58,.13);
+  --shadow-lg:  0 16px 48px rgba(11,29,58,.18);
+
+  --transition: all .25s cubic-bezier(.4,0,.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--dark-text);
+  background: var(--off-white);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; }
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--light-gray); }
+::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 4px; }
+
+/* ============================================================
+   TICKER BANNER
+   ============================================================ */
+.ticker-wrap {
+  background: linear-gradient(90deg, var(--navy) 0%, var(--indigo) 100%);
+  color: var(--white);
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  height: 36px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.ticker-label {
+  background: var(--gold);
+  color: var(--navy);
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: .72rem;
+  padding: 0 14px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  gap: 6px;
+}
+.ticker-content {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+.ticker-inner {
+  display: flex;
+  gap: 0;
+  animation: ticker-scroll 38s linear infinite;
+  white-space: nowrap;
+}
+.ticker-inner:hover { animation-play-state: paused; }
+.ticker-item {
+  font-size: .78rem;
+  padding: 0 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #CBD5E1;
+}
+.ticker-item span { color: var(--cyan); font-weight: 600; }
+.ticker-dot {
+  color: var(--gold);
+  font-size: 1rem;
+}
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   HEADER / NAVBAR
+   ============================================================ */
+.header {
+  background: var(--white);
+  border-bottom: 1px solid var(--light-gray);
+  position: sticky;
+  top: 36px;
+  z-index: 999;
+  box-shadow: var(--shadow-sm);
+}
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--cyan) 100%);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.15rem;
+  font-weight: 800;
+  font-family: var(--font-head);
+  letter-spacing: -.5px;
+  box-shadow: 0 4px 12px rgba(30,109,200,.35);
+}
+.logo-text {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--navy);
+  letter-spacing: -.3px;
+}
+.logo-text span { color: var(--blue); }
+.logo-tagline {
+  font-size: .65rem;
+  color: var(--mid-gray);
+  font-weight: 400;
+  margin-top: -4px;
+  display: block;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.search-wrap {
+  flex: 1;
+  max-width: 520px;
+  position: relative;
+}
+.search-bar {
+  width: 100%;
+  padding: 10px 44px 10px 16px;
+  border: 1.5px solid var(--light-gray);
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: .9rem;
+  color: var(--dark-text);
+  background: var(--off-white);
+  outline: none;
+  transition: var(--transition);
+}
+.search-bar:focus {
+  border-color: var(--sky);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(59,158,255,.15);
+}
+.search-btn {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, var(--blue), var(--sky));
+  border: none;
+  border-radius: 50px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  font-size: .85rem;
+  transition: var(--transition);
+}
+.search-btn:hover { transform: translateY(-50%) scale(1.08); }
+#search-results-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--light-gray);
+  max-height: 320px;
+  overflow-y: auto;
+  display: none;
+  z-index: 2000;
+}
+#search-results-dropdown.active { display: block; }
+.search-result-item {
+  padding: 10px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: .88rem;
+  transition: var(--transition);
+  border-bottom: 1px solid var(--light-gray);
+}
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item:hover { background: var(--off-white); }
+.search-result-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .8rem;
+  flex-shrink: 0;
+}
+.search-result-tag {
+  margin-left: auto;
+  font-size: .7rem;
+  background: var(--light-gray);
+  color: var(--indigo);
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+.nav-links a {
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--body-text);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.nav-links a:hover { background: var(--off-white); color: var(--blue); }
+.nav-links a.active { color: var(--blue); font-weight: 600; }
+.btn-notify {
+  background: linear-gradient(135deg, var(--orange), var(--gold));
+  color: white !important;
+  padding: 7px 16px !important;
+  border-radius: 50px !important;
+  font-weight: 600 !important;
+  font-size: .8rem !important;
+  box-shadow: 0 4px 14px rgba(255,107,53,.3);
+  transition: var(--transition) !important;
+}
+.btn-notify:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,107,53,.4); background: var(--off-white) !important; color: var(--orange) !important; }
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  color: var(--navy);
+  cursor: pointer;
+  padding: 6px;
+}
+
+/* ============================================================
+   HERO STRIP
+   ============================================================ */
+.hero {
+  background: linear-gradient(120deg, var(--navy) 0%, var(--indigo) 55%, #1A4D8F 100%);
+  padding: 40px 24px 36px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(245,166,35,.15);
+  border: 1px solid rgba(245,166,35,.4);
+  color: var(--gold);
+  font-size: .75rem;
+  font-weight: 600;
+  padding: 4px 14px;
+  border-radius: 50px;
+  margin-bottom: 12px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-family: var(--font-head);
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 10px;
+  letter-spacing: -.5px;
+}
+.hero h1 em {
+  font-style: normal;
+  background: linear-gradient(90deg, var(--cyan), var(--sky));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub {
+  color: #94B4D4;
+  font-size: .92rem;
+  max-width: 540px;
+  margin: 0 auto 20px;
+}
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.hero-stat {
+  text-align: center;
+}
+.hero-stat strong {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--white);
+}
+.hero-stat span {
+  font-size: .72rem;
+  color: var(--mid-gray);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+/* ============================================================
+   FILTER TABS
+   ============================================================ */
+.filter-section {
+  background: var(--white);
+  border-bottom: 1px solid var(--light-gray);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.filter-section::-webkit-scrollbar { height: 0; }
+.filter-tabs {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  height: 52px;
+}
+.filter-tab {
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: .82rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  border: none;
+  background: none;
+  color: var(--body-text);
+  font-family: var(--font-body);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.filter-tab:hover { background: var(--off-white); color: var(--blue); }
+.filter-tab.active {
+  background: var(--blue);
+  color: var(--white);
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(30,109,200,.25);
+}
+
+/* ============================================================
+   MAIN LAYOUT
+   ============================================================ */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  padding: 28px 0 48px;
+}
+
+/* ============================================================
+   SECTION HEADER
+   ============================================================ */
+.sec-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.sec-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-title-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .9rem;
+  color: white;
+}
+.sec-title h2 {
+  font-family: var(--font-head);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+.sec-title p {
+  font-size: .73rem;
+  color: var(--mid-gray);
+  margin-top: 1px;
+}
+.sec-link {
+  font-size: .78rem;
+  color: var(--blue);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: var(--transition);
+}
+.sec-link:hover { gap: 8px; }
+
+/* ============================================================
+   EXAM CARDS GRID
+   ============================================================ */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: 12px;
+}
+.exam-card-link {
+  display: block;
+}
+.exam-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 18px 14px;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1.5px solid var(--light-gray);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+.exam-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--card-accent, var(--blue));
+  transform: scaleX(0);
+  transition: var(--transition);
+  transform-origin: left;
+}
+.exam-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: transparent;
+}
+.exam-card:hover::before { transform: scaleX(1); }
+.card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  background: var(--card-bg, #EFF6FF);
+  color: var(--card-color, var(--blue));
+  transition: var(--transition);
+}
+.exam-card:hover .card-icon {
+  background: var(--card-accent, var(--blue));
+  color: white;
+  transform: scale(1.08);
+}
+.card-name {
+  font-family: var(--font-head);
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.3;
+}
+.card-sub {
+  font-size: .68rem;
+  color: var(--mid-gray);
+  margin-top: -6px;
+}
+.card-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: .6rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.badge-new { background: rgba(34,197,94,.15); color: var(--green); }
+.badge-hot { background: rgba(239,68,68,.15); color: var(--red); }
+.badge-live { background: rgba(245,166,35,.15); color: var(--gold); }
+
+/* ============================================================
+   SECTION BLOCK
+   ============================================================ */
+.section-block {
+  margin-bottom: 28px;
+}
+
+/* ============================================================
+   VACANCY TABLE CARDS
+   ============================================================ */
+.vacancy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.vacancy-item-link {
+  display: block;
+}
+.vacancy-item {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1.5px solid var(--light-gray);
+  transition: var(--transition);
+  cursor: pointer;
+}
+.vacancy-item:hover {
+  border-color: var(--sky);
+  box-shadow: var(--shadow-sm);
+  transform: translateX(4px);
+}
+.vacancy-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .95rem;
+  flex-shrink: 0;
+  color: white;
+}
+.vacancy-info { flex: 1; min-width: 0; }
+.vacancy-title {
+  font-weight: 600;
+  font-size: .85rem;
+  color: var(--navy);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.vacancy-meta {
+  font-size: .72rem;
+  color: var(--mid-gray);
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.vacancy-meta i { font-size: .65rem; }
+.vacancy-tag {
+  font-size: .68rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+.tag-open   { background: rgba(34,197,94,.12);  color: var(--green); }
+.tag-result { background: rgba(30,109,200,.12); color: var(--blue); }
+.tag-admit  { background: rgba(124,58,237,.12); color: var(--purple); }
+.tag-closed { background: rgba(239,68,68,.1);   color: var(--red); }
+.tag-soon   { background: rgba(245,166,35,.15); color: var(--gold); }
+.vacancy-arrow {
+  color: var(--mid-gray);
+  font-size: .78rem;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   BOARDS SECTION
+   ============================================================ */
+.boards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+.board-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  border: 1.5px solid var(--light-gray);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.board-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: transparent;
+}
+.board-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-family: var(--font-head);
+  font-size: .78rem;
+  color: white;
+  flex-shrink: 0;
+  letter-spacing: -.3px;
+}
+.board-info { flex: 1; }
+.board-name {
+  font-family: var(--font-head);
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.3;
+}
+.board-state {
+  font-size: .7rem;
+  color: var(--mid-gray);
+  margin-top: 2px;
+}
+.board-links {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+.board-link-btn {
+  font-size: .65rem;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: var(--off-white);
+  color: var(--indigo);
+  font-weight: 600;
+  transition: var(--transition);
+}
+.board-link-btn:hover { background: var(--blue); color: white; }
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+.sidebar {}
+.sidebar-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--light-gray);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.sidebar-head {
+  padding: 14px 18px;
+  font-family: var(--font-head);
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--navy);
+  border-bottom: 1px solid var(--light-gray);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sidebar-head i { color: var(--blue); }
+.sidebar-item-link {
+  display: block;
+}
+.sidebar-item {
+  padding: 11px 18px;
+  border-bottom: 1px solid var(--light-gray);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.sidebar-item:last-child { border-bottom: none; }
+.sidebar-item:hover { background: var(--off-white); }
+.sidebar-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+.sidebar-item-text {
+  font-size: .78rem;
+  color: var(--body-text);
+  line-height: 1.4;
+  flex: 1;
+}
+.sidebar-item-text strong {
+  display: block;
+  font-size: .8rem;
+  color: var(--navy);
+  font-weight: 600;
+  margin-bottom: 1px;
+}
+.sidebar-date {
+  font-size: .68rem;
+  color: var(--mid-gray);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* Countdown widget */
+.countdown-widget {
+  padding: 18px;
+  text-align: center;
+  background: linear-gradient(135deg, var(--navy), var(--indigo));
+}
+.countdown-label {
+  font-size: .72rem;
+  color: #94B4D4;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 4px;
+}
+.countdown-exam {
+  font-family: var(--font-head);
+  font-size: .95rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 14px;
+}
+.countdown-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.countdown-box {
+  background: rgba(255,255,255,.1);
+  border-radius: 8px;
+  padding: 8px 12px;
+  min-width: 54px;
+}
+.countdown-num {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--cyan);
+  line-height: 1;
+}
+.countdown-unit {
+  font-size: .6rem;
+  color: #94B4D4;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-top: 3px;
+}
+
+/* Quick links */
+.quick-links-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.quick-link-item {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: .78rem;
+  color: var(--body-text);
+  font-weight: 500;
+  border-right: 1px solid var(--light-gray);
+  border-bottom: 1px solid var(--light-gray);
+  transition: var(--transition);
+}
+.quick-link-item:hover { background: var(--off-white); color: var(--blue); }
+.quick-link-item i { font-size: .85rem; color: var(--blue); width: 16px; }
+.quick-link-item:nth-child(even) { border-right: none; }
+.quick-link-item:nth-last-child(-n+2) { border-bottom: none; }
+
+/* ============================================================
+   RESULT SECTION
+   ============================================================ */
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+.result-card-link {
+  display: block;
+}
+.result-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  border: 1.5px solid var(--light-gray);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  height: 100%;
+}
+.result-card:hover {
+  border-color: var(--sky);
+  box-shadow: var(--shadow-sm);
+}
+.result-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .9rem;
+  color: white;
+  flex-shrink: 0;
+}
+.result-info { flex: 1; }
+.result-name {
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+.result-meta {
+  font-size: .68rem;
+  color: var(--mid-gray);
+  margin-top: 2px;
+}
+.result-status {
+  margin-left: auto;
+  font-size: .65rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: var(--navy);
+  color: #94B4D4;
+  padding: 40px 0 20px;
+  margin-top: 20px;
+}
+.footer-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 32px;
+}
+.footer-brand {}
+.footer-logo-text {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: white;
+}
+.footer-logo-text span { color: var(--cyan); }
+.footer-desc {
+  font-size: .8rem;
+  line-height: 1.7;
+  margin-top: 10px;
+  max-width: 260px;
+}
+.footer-social {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+.footer-social a {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(255,255,255,.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94B4D4;
+  font-size: .85rem;
+  transition: var(--transition);
+}
+.footer-social a:hover { background: var(--blue); color: white; }
+.footer-col h4 {
+  font-family: var(--font-head);
+  font-size: .82rem;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 14px;
+}
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+.footer-col ul li a {
+  font-size: .8rem;
+  color: #94B4D4;
+  transition: var(--transition);
+}
+.footer-col ul li a:hover { color: var(--cyan); padding-left: 4px; }
+.footer-col ul li i {
+  width: 20px;
+  color: var(--cyan);
+}
+.developer-tag {
+  font-weight: 600;
+  color: var(--white);
+  background: linear-gradient(90deg, var(--blue), var(--cyan));
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 4px;
+}
+.footer-bottom {
+  max-width: 1280px;
+  margin: 28px auto 0;
+  padding: 18px 24px 0;
+  border-top: 1px solid rgba(255,255,255,.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: .75rem;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: 280px;
+  background: var(--white);
+  z-index: 3000;
+  transform: translateX(100%);
+  transition: transform .3s ease;
+  flex-direction: column;
+  padding: 24px;
+  box-shadow: -8px 0 40px rgba(0,0,0,.2);
+}
+.mobile-nav.open { transform: translateX(0); }
+.mobile-nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 2999;
+}
+.mobile-nav-overlay.open { display: block; }
+.mobile-nav-close {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: var(--navy);
+  margin-bottom: 20px;
+}
+.mobile-nav a {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--light-gray);
+  font-weight: 500;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .9rem;
+}
+.mobile-nav a i { color: var(--blue); width: 18px; }
+
+/* ============================================================
+   NO RESULTS
+   ============================================================ */
+.no-results {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--mid-gray);
+  display: none;
+}
+.no-results i { font-size: 2.5rem; margin-bottom: 12px; display: block; }
+.no-results p { font-size: .9rem; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .main-grid { grid-template-columns: 1fr; }
+  .sidebar { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .sidebar .sidebar-card:last-child { grid-column: span 2; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; align-items: center; }
+  .mobile-nav { display: flex; }
+  .hero { padding: 28px 20px 24px; }
+  .hero-stats { gap: 20px; }
+  .boards-grid { grid-template-columns: 1fr 1fr; }
+  .result-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .sidebar { grid-template-columns: 1fr; }
+  .sidebar .sidebar-card:last-child { grid-column: span 1; }
+}
+@media (max-width: 480px) {
+  .header-inner { height: 60px; gap: 12px; }
+  .logo-tagline { display: none; }
+  .cards-grid { grid-template-columns: repeat(3, 1fr); }
+  .boards-grid { grid-template-columns: 1fr; }
+  .hero-stat strong { font-size: 1.15rem; }
+  .countdown-boxes { gap: 6px; }
+  .countdown-box { min-width: 44px; padding: 6px 8px; }
+}
+@media (max-width: 360px) {
+  .cards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.section-block {
+  animation: fadeInUp .5s ease both;
+}
+.section-block:nth-child(1) { animation-delay: .05s; }
+.section-block:nth-child(2) { animation-delay: .1s; }
+.section-block:nth-child(3) { animation-delay: .15s; }
+.section-block:nth-child(4) { animation-delay: .2s; }
+.section-block:nth-child(5) { animation-delay: .25s; }
+</style>
+</head>
+<body>
+
+<div class="ticker-wrap">
+  <div class="ticker-label">
+    <i class="fas fa-bolt"></i> Live Updates
+  </div>
+  <div class="ticker-content">
+    <div class="ticker-inner" id="ticker">
+      <span class="ticker-item"><span>NEW</span> BPSC 70th Combined Exam Date Announced – 13 April 2025 <span class="ticker-dot">•</span></span>
+      <span class="ticker-item"><span>RESULT</span> SSC GD Constable Final Result 2025 Released <span class="ticker-dot">•</span></span>
+      <span class="ticker-item"><span>ADMIT</span> RRB NTPC Admit Card 2025 – Download Now <span class="ticker-dot">•</span></span>
+      <span class="ticker-item"><span>FORM</span> UPSC CSE 2025 Notification Out – Apply Before 18 Feb <span class="ticker-dot">•</span></span>
+      <span class="ticker-item"><span>RESULT</span> Bihar Board 12th Result 2025 Declared – Check Now <span class="ticker-dot">•</span></span>
+      <span class="ticker-item"><span>NEW</span> BSSC Inter Level Vacancy 2025 – 11098 Posts <span class="ticker-dot">•</span></span>
+      <span class="ticker-item"><span>ADMIT</span> NEET UG 2025 Hall Ticket Released – Download Here <span class="ticker-dot">•</span></span>
+      <span class="ticker-item"><span>FORM</span> Bihar Police SI 2025 – Apply Online Started <span class="ticker-dot">•</span></span>
+      <span class="ticker-item"><span>NEW</span> BPSC 70th Combined Exam Date Announced – 13 April 2025 <span class="ticker-dot">•</span></span>
+      <span class="ticker-item"><span>RESULT</span> SSC GD Constable Final Result 2025 Released <span class="ticker-dot">•</span></span>
+      <span class="ticker-item"><span>ADMIT</span> RRB NTPC Admit Card 2025 – Download Now <span class="ticker-dot">•</span></span>
+      <span class="ticker-item"><span>FORM</span> UPSC CSE 2025 Notification Out – Apply Before 18 Feb <span class="ticker-dot">•</span></span>
+      <span class="ticker-item"><span>RESULT</span> Bihar Board 12th Result 2025 Declared – Check Now <span class="ticker-dot">•</span></span>
+      <span class="ticker-item"><span>NEW</span> BSSC Inter Level Vacancy 2025 – 11098 Posts <span class="ticker-dot">•</span></span>
+      <span class="ticker-item"><span>ADMIT</span> NEET UG 2025 Hall Ticket Released – Download Here <span class="ticker-dot">•</span></span>
+      <span class="ticker-item"><span>FORM</span> Bihar Police SI 2025 – Apply Online Started <span class="ticker-dot">•</span></span>
+    </div>
+  </div>
+</div>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">AE</div>
+      <div>
+        <div class="logo-text">All<span>Exam</span>.com</div>
+        <span class="logo-tagline">India's Exam & Job Portal</span>
+      </div>
+    </a>
+
+    <div class="search-wrap">
+      <input class="search-bar" type="text" id="searchInput" placeholder="Search exam, vacancy, result, syllabus…" autocomplete="off">
+      <button class="search-btn" onclick="performSearch()"><i class="fas fa-search"></i></button>
+      <div id="search-results-dropdown"></div>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#vacancies" class="active">Vacancies</a>
+      <a href="#syllabus">Syllabus</a>
+      <a href="#results">Results</a>
+      <a href="#boards">Boards</a>
+      <a href="https://telegram.org" target="_blank" class="btn-notify"><i class="fab fa-telegram-plane"></i> Join Telegram</a>
+    </nav>
+
+    <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-nav-overlay" id="mobileOverlay" onclick="toggleMobileNav()"></div>
+<nav class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="toggleMobileNav()"><i class="fas fa-times"></i></button>
+  <a href="#vacancies" onclick="toggleMobileNav()"><i class="fas fa-briefcase"></i> Government Vacancies</a>
+  <a href="#syllabus" onclick="toggleMobileNav()"><i class="fas fa-book-open"></i> Exam Syllabus</a>
+  <a href="#results" onclick="toggleMobileNav()"><i class="fas fa-poll"></i> Results</a>
+  <a href="#boards" onclick="toggleMobileNav()"><i class="fas fa-school"></i> Board Exams</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge"><i class="fas fa-star"></i> India's Most Trusted Exam Portal</div>
+  <h1>Your Gateway to Every<br><em>Government Exam & Job</em></h1>
+  <p class="hero-sub">UPSC • SSC • Bihar Police • BPSC • BSSC • Railway • NEET • JEE & 500+ More Exams</p>
+  <div class="hero-stats">
+    <a href="https://www.sarkariresult.com" target="_blank"><div class="hero-stat"><strong>1.2Cr+</strong><span>Monthly Users</span></div></a>
+    <div class="hero-stat"><strong>500+</strong><span>Exams Covered</span></div>
+    <a href="#vacancies"><div class="hero-stat"><strong>50K+</strong><span>Active Vacancies</span></div></a>
+    <div class="hero-stat"><strong>24/7</strong><span>Live Updates</span></div>
+  </div>
+</section>
+
+<div class="filter-section">
+  <div class="filter-tabs">
+    <button class="filter-tab active" onclick="filterCategory('all', this)"><i class="fas fa-th"></i> All</button>
+    <button class="filter-tab" onclick="filterCategory('central', this)"><i class="fas fa-landmark"></i> Central Govt</button>
+    <button class="filter-tab" onclick="filterCategory('state', this)"><i class="fas fa-map-marker-alt"></i> State Exams</button>
+    <button class="filter-tab" onclick="filterCategory('banking', this)"><i class="fas fa-university"></i> Banking</button>
+    <button class="filter-tab" onclick="filterCategory('railway', this)"><i class="fas fa-train"></i> Railway</button>
+    <button class="filter-tab" onclick="filterCategory('defence', this)"><i class="fas fa-shield-alt"></i> Defence</button>
+    <button class="filter-tab" onclick="filterCategory('medical', this)"><i class="fas fa-heartbeat"></i> Medical</button>
+    <button class="filter-tab" onclick="filterCategory('engineering', this)"><i class="fas fa-cogs"></i> Engineering</button>
+    <button class="filter-tab" onclick="filterCategory('teaching', this)"><i class="fas fa-chalkboard-teacher"></i> Teaching</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="main-grid">
+    <div id="mainContent">
+
+      <div class="section-block" id="examCategories">
+        <div class="sec-header">
+          <div class="sec-title">
+            <div class="sec-title-icon" style="background:linear-gradient(135deg,#1E6DC8,#3B9EFF)"><i class="fas fa-layer-group"></i></div>
+            <div>
+              <h2>Special Exam Categories</h2>
+              <p>All major competitive exams at a glance</p>
+            </div>
+          </div>
+          <a href="https://www.sarkariresult.com" target="_blank" class="sec-link">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="cards-grid" id="examCardsGrid"></div>
+        <div class="no-results" id="noResults">
+          <i class="fas fa-search"></i>
+          <p>No exams found matching your search. Try a different keyword.</p>
+        </div>
+      </div>
+
+      <div class="section-block" id="vacancies">
+        <div class="sec-header">
+          <div class="sec-title">
+            <div class="sec-title-icon" style="background:linear-gradient(135deg,#22C55E,#0D9488)"><i class="fas fa-briefcase"></i></div>
+            <div>
+              <h2>Latest Government Vacancies</h2>
+              <p>Apply before deadlines – Updated daily</p>
+            </div>
+          </div>
+          <a href="https://www.sarkariresult.com/latestjob/" target="_blank" class="sec-link">All Vacancies <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="vacancy-list" id="vacancyList"></div>
+      </div>
+
+      <div class="section-block" id="boards">
+        <div class="sec-header">
+          <div class="sec-title">
+            <div class="sec-title-icon" style="background:linear-gradient(135deg,#7C3AED,#EC4899)"><i class="fas fa-school"></i></div>
+            <div>
+              <h2>Board Exams</h2>
+              <p>Bihar Board, UP Board, CBSE, ICSE & more</p>
+            </div>
+          </div>
+          <a href="https://www.sarkariresult.com" target="_blank" class="sec-link">All Boards <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="boards-grid" id="boardsGrid"></div>
+      </div>
+
+      <div class="section-block" id="results">
+        <div class="sec-header">
+          <div class="sec-title">
+            <div class="sec-title-icon" style="background:linear-gradient(135deg,#F5A623,#FF6B35)"><i class="fas fa-poll"></i></div>
+            <div>
+              <h2>Latest Results</h2>
+              <p>Check recently declared results</p>
+            </div>
+          </div>
+          <a href="https://www.sarkariresult.com/result/" target="_blank" class="sec-link">All Results <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="result-grid" id="resultGrid"></div>
+      </div>
+
+      <div class="section-block" id="syllabus">
+        <div class="sec-header">
+          <div class="sec-title">
+            <div class="sec-title-icon" style="background:linear-gradient(135deg,#0D9488,#22C55E)"><i class="fas fa-book-open"></i></div>
+            <div>
+              <h2>Exam Syllabus Hub</h2>
+              <p>Download official syllabus PDFs</p>
+            </div>
+          </div>
+          <a href="https://www.sarkariresult.com/syllabus/" target="_blank" class="sec-link">All Syllabi <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="cards-grid" id="syllabusGrid"></div>
+      </div>
+
+    </div><aside class="sidebar">
+
+      <div class="sidebar-card">
+        <div class="countdown-widget">
+          <p class="countdown-label">Next Major Exam</p>
+          <p class="countdown-exam">UPSC CSE Prelims 2025</p>
+          <div class="countdown-boxes">
+            <div class="countdown-box">
+              <div class="countdown-num" id="cd-days">--</div>
+              <div class="countdown-unit">Days</div>
+            </div>
+            <div class="countdown-box">
+              <div class="countdown-num" id="cd-hours">--</div>
+              <div class="countdown-unit">Hrs</div>
+            </div>
+            <div class="countdown-box">
+              <div class="countdown-num" id="cd-mins">--</div>
+              <div class="countdown-unit">Mins</div>
+            </div>
+            <div class="countdown-box">
+              <div class="countdown-num" id="cd-secs">--</div>
+              <div class="countdown-unit">Secs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-head"><i class="fas fa-bolt"></i> Quick Links</div>
+        <div class="quick-links-grid">
+          <a href="https://www.sarkariresult.com/admitcard/" target="_blank" class="quick-link-item"><i class="fas fa-file-alt"></i> Admit Cards</a>
+          <a href="https://www.sarkariresult.com/answerkey/" target="_blank" class="quick-link-item"><i class="fas fa-check-circle"></i> Answer Keys</a>
+          <a href="https://www.sarkariresult.com" target="_blank" class="quick-link-item"><i class="fas fa-cut"></i> Cut Off</a>
+          <a href="https://www.sarkariresult.com" target="_blank" class="quick-link-item"><i class="fas fa-calendar-alt"></i> Exam Calendar</a>
+          <a href="https://www.sarkariresult.com" target="_blank" class="quick-link-item"><i class="fas fa-book"></i> Study Material</a>
+          <a href="https://www.sarkariresult.com" target="_blank" class="quick-link-item"><i class="fas fa-question"></i> Mock Tests</a>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-head"><i class="fas fa-calendar-check"></i> Important Dates</div>
+        <div class="sidebar-item" onclick="window.open('https://upsc.gov.in', '_blank')">
+          <div class="sidebar-dot" style="background:var(--red)"></div>
+          <div class="sidebar-item-text">
+            <strong>UPSC CSE 2025 Last Date</strong>
+            Application Closes – Act Now
+          </div>
+          <div class="sidebar-date">18 Feb</div>
+        </div>
+        <div class="sidebar-item" onclick="window.open('https://bpsc.bih.nic.in', '_blank')">
+          <div class="sidebar-dot" style="background:var(--gold)"></div>
+          <div class="sidebar-item-text">
+            <strong>BPSC 70th Prelims</strong>
+            Written Exam Scheduled
+          </div>
+          <div class="sidebar-date">13 Apr</div>
+        </div>
+        <div class="sidebar-item" onclick="window.open('https://ssc.gov.in', '_blank')">
+          <div class="sidebar-dot" style="background:var(--blue)"></div>
+          <div class="sidebar-item-text">
+            <strong>SSC CHSL 2025</strong>
+            Tier-I Exam Starts
+          </div>
+          <div class="sidebar-date">1 Jul</div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-head"><i class="fas fa-newspaper"></i> Top Updates</div>
+        <div class="sidebar-item" onclick="window.open('https://bpssc.bih.nic.in', '_blank')">
+          <div class="sidebar-dot" style="background:var(--cyan)"></div>
+          <div class="sidebar-item-text">
+            <strong>Bihar Police SI Vacancy 2025</strong>
+            2688 Sub-Inspector posts announced
+          </div>
+          <div class="sidebar-date">Today</div>
+        </div>
+        <div class="sidebar-item" onclick="window.open('https://ssc.gov.in', '_blank')">
+          <div class="sidebar-dot" style="background:var(--orange)"></div>
+          <div class="sidebar-item-text">
+            <strong>RRB NTPC Admit Card</strong>
+            Hall ticket available for download
+          </div>
+          <div class="sidebar-date">Yesterday</div>
+        </div>
+      </div>
+
+    </aside></div>
+</div>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-text">All<span>Exam</span>.com</div>
+      <p class="footer-desc">India's most comprehensive platform for government jobs, competitive exam prep, board results, and job alerts. Trusted by over 1.2 crore students and job seekers.</p>
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://telegram.org" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+        <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Government Jobs</h4>
+      <ul>
+        <li><a href="https://upsc.gov.in" target="_blank">UPSC Jobs</a></li>
+        <li><a href="https://ssc.gov.in" target="_blank">SSC Jobs</a></li>
+        <li><a href="https://indianrailways.gov.in" target="_blank">Railway Jobs</a></li>
+        <li><a href="https://ibps.in" target="_blank">Banking Jobs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Bihar Specific</h4>
+      <ul>
+        <li><a href="https://bpsc.bih.nic.in" target="_blank">BPSC Portal</a></li>
+        <li><a href="https://bssc.bihar.gov.in" target="_blank">BSSC Portal</a></li>
+        <li><a href="https://bpssc.bih.nic.in" target="_blank">Bihar Police SI</a></li>
+        <li><a href="https://biharboardonline.bihar.gov.in" target="_blank">Bihar Board</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact & Support</h4>
+      <ul>
+        <li><i class="fas fa-phone"></i> <a href="tel:+918825913300"><strong>+91 8825913300</strong></a></li>
+        <li><i class="fas fa-envelope"></i> <a href="mailto:samiryt104kumar@gmail.com" style="font-size: 0.72rem;"><strong>samiryt104kumar@gmail.com</strong></a></li>
+        <li style="margin-top: 15px; color: white;">Website Developer:</li>
+        <li><span class="developer-tag"><i class="fas fa-code" style="color:white; font-size:0.7rem;"></i> Samir Nishad</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 AllExam.com – All Rights Reserved</span>
+    <span>Disclaimer: This is a reference/information portal. Always verify from official websites.</span>
+  </div>
+</footer>
+
+<script>
+/* ========= DATA SYSTEM WITH REAL LINKS ========= */
+const examCards = [
+  { name:"UPSC CSE",   sub:"Civil Services", icon:"fas fa-landmark",           cat:"central",  bg:"#EFF6FF", color:"#1E6DC8", accent:"#1E6DC8", badge:"hot", url:"https://upsc.gov.in"  },
+  { name:"SSC CGL",    sub:"Staff Selection", icon:"fas fa-file-certificate",   cat:"central",  bg:"#F0FDF4", color:"#22C55E", accent:"#22C55E", badge:"open", url:"https://ssc.gov.in" },
+  { name:"SSC CHSL",   sub:"10+2 Level",      icon:"fas fa-layer-group",        cat:"central",  bg:"#FFF7ED", color:"#F97316", accent:"#F97316", url:"https://ssc.gov.in"               },
+  { name:"SSC MTS",    sub:"Multi Tasking",   icon:"fas fa-users",              cat:"central",  bg:"#FEF9C3", color:"#CA8A04", accent:"#CA8A04", badge:"new", url:"https://ssc.gov.in"  },
+  { name:"BPSC",       sub:"Bihar PSC",       icon:"fas fa-gopuram",            cat:"state",    bg:"#EDE9FE", color:"#7C3AED", accent:"#7C3AED", badge:"hot", url:"https://bpsc.bih.nic.in"  },
+  { name:"BSSC",       sub:"Bihar SSC",       icon:"fas fa-scroll",             cat:"state",    bg:"#FCE7F3", color:"#EC4899", accent:"#EC4899", url:"https://bssc.bihar.gov.in"               },
+  { name:"Bihar Police",sub:"SI / Constable", icon:"fas fa-shield-alt",         cat:"state",    bg:"#F0F9FF", color:"#0284C7", accent:"#0284C7", badge:"new", url:"https://csbc.bih.nic.in"  },
+  { name:"UP Police",  sub:"Uttar Pradesh",   icon:"fas fa-user-shield",        cat:"state",    bg:"#ECFDF5", color:"#0D9488", accent:"#0D9488", url:"https://uppbpb.gov.in"              },
+  { name:"UPPSC",      sub:"UP PSC",          icon:"fas fa-building-columns",   cat:"state",    bg:"#EFF6FF", color:"#2563EB", accent:"#2563EB", url:"https://uppsc.up.nic.in"           },
+  { name:"RRB NTPC",   sub:"Non-Technical",   icon:"fas fa-train",              cat:"railway",  bg:"#FFF1F2", color:"#E11D48", accent:"#E11D48", badge:"live", url:"https://www.rrbcdg.gov.in" },
+  { name:"RRB Group D",sub:"Group D Posts",   icon:"fas fa-train-tram",         cat:"railway",  bg:"#FEF9C3", color:"#B45309", accent:"#B45309", url:"https://www.rrbcdg.gov.in" },
+  { name:"RRB JE",     sub:"Junior Engineer", icon:"fas fa-train-subway",       cat:"railway",  bg:"#FFF7ED", color:"#EA580C", accent:"#EA580C", url:"https://www.rrbcdg.gov.in" },
+  { name:"IBPS PO",    sub:"Bank PO",         icon:"fas fa-landmark",           cat:"banking",  bg:"#F0FDF4", color:"#16A34A", accent:"#16A34A", url:"https://ibps.in"               },
+  { name:"IBPS Clerk", sub:"Bank Clerk",      icon:"fas fa-building-columns",   cat:"banking",  bg:"#ECFEFF", color:"#0891B2", accent:"#0891B2", badge:"open", url:"https://ibps.in"         },
+  { name:"SBI PO",     sub:"State Bank",      icon:"fas fa-piggy-bank",         cat:"banking",  bg:"#EDE9FE", color:"#7C3AED", accent:"#7C3AED", url:"https://sbi.co.in"               },
+  { name:"NDA",        sub:"National Defence",icon:"fas fa-khanda",             cat:"defence",  bg:"#FEF2F2", color:"#DC2626", accent:"#DC2626", url:"https://upsc.gov.in"              },
+  { name:"CDS",        sub:"Combined Defence",icon:"fas fa-star",               cat:"defence",  bg:"#FFF7ED", color:"#C2410C", accent:"#C2410C", url:"https://upsc.gov.in"              },
+  { name:"AGNIVEER",   sub:"Army/Navy/AF",    icon:"fas fa-person-military-to-hazmat",cat:"defence",bg:"#FEF9C3",color:"#92400E",accent:"#92400E",badge:"new", url:"https://joinindianarmy.nic.in"},
+  { name:"NEET UG",    sub:"Medical Entrance",icon:"fas fa-stethoscope",        cat:"medical",  bg:"#F0FDF4", color:"#15803D", accent:"#15803D", badge:"hot", url:"https://neet.nta.nic.in"  },
+  { name:"NEET PG",    sub:"Postgraduate",    icon:"fas fa-hospital",           cat:"medical",  bg:"#ECFDF5", color:"#0D9488", accent:"#0D9488", url:"https://natboard.edu.in"          },
+  { name:"JEE Main",   sub:"Engineering",     icon:"fas fa-atom",               cat:"engineering",bg:"#EFF6FF",color:"#2563EB",accent:"#2563EB",badge:"live", url:"https://jeemain.nta.nic.in" },
+  { name:"JEE Advanced",sub:"IIT Entrance",   icon:"fas fa-flask",              cat:"engineering",bg:"#FFF1F2",color:"#BE123C",accent:"#BE123C", url:"https://jeeadv.ac.in"          },
+  { name:"GATE",       sub:"PG Engineering",  icon:"fas fa-microchip",          cat:"engineering",bg:"#EDE9FE",color:"#6D28D9",accent:"#6D28D9", url:"https://gate2026.iitm.ac.in"     },
+  { name:"CTET",       sub:"Central TET",     icon:"fas fa-chalkboard-teacher", cat:"teaching", bg:"#ECFDF5", color:"#059669", accent:"#059669", url:"https://ctet.nic.in"               },
+  { name:"BTET",       sub:"Bihar TET",       icon:"fas fa-person-chalkboard",  cat:"teaching", bg:"#FFF7ED", color:"#D97706", accent:"#D97706", badge:"new", url:"https://biharboardonline.bihar.gov.in" },
+  { name:"STET Bihar", sub:"State TET",       icon:"fas fa-book-reader",        cat:"teaching", bg:"#EDE9FE", color:"#7C3AED", accent:"#7C3AED", url:"https://secondary.biharboardonline.com" },
+  { name:"CAT",        sub:"MBA Entrance",    icon:"fas fa-chart-line",         cat:"central",  bg:"#FCE7F3", color:"#DB2777", accent:"#DB2777", url:"https://iimcat.ac.in"             },
+  { name:"CLAT",       sub:"Law Entrance",    icon:"fas fa-scale-balanced",     cat:"central",  bg:"#F0F9FF", color:"#0369A1", accent:"#0369A1", url:"https://consortiumofnlus.ac.in"   },
+];
+
+const vacancies = [
+  { title:"UPSC Civil Services 2025 Portal", dept:"Union Public Service Commission",    posts:"979",   deadline:"Check Portal",  status:"open",   icon:"fas fa-landmark",     color:"#1E6DC8", url:"https://upsc.gov.in" },
+  { title:"SSC GD Constable Active Vacancies", dept:"Staff Selection Commission",         posts:"39481", deadline:"Continuous Updates",  status:"open", icon:"fas fa-user-shield",  color:"#22C55E", url:"https://ssc.gov.in" },
+  { title:"RRB NTPC Graduate Level Board",   dept:"Railway Recruitment Board",          posts:"8113",  deadline:"Check Schedule",  status:"open",   icon:"fas fa-train",        color:"#E11D48", url:"https://www.rrbcdg.gov.in" },
+  { title:"Bihar Police SI & Constable Board", dept:"Bihar Police Recruitment Board",  posts:"2688",  deadline:"Latest Form Info",  status:"open",   icon:"fas fa-shield-alt",   color:"#0284C7", url:"https://bpssc.bih.nic.in" },
+  { title:"BSSC Inter Level Ongoing Updates",  dept:"Bihar SSC Portal",                          posts:"11098", deadline:"Updates Online", status:"open",   icon:"fas fa-scroll",       color:"#EC4899", url:"https://bssc.bihar.gov.in" },
+  { title:"IBPS PO Recruitment Board",       dept:"Institute of Banking Personnel",     posts:"4455",  deadline:"Check Online",   status:"open",   icon:"fas fa-landmark",     color:"#16A34A", url:"https://ibps.in" },
+  { title:"SBI Clerk & PO Online Portal",     dept:"State Bank of India",                posts:"13735", deadline:"Check Careers",  status:"open",   icon:"fas fa-piggy-bank",   color:"#7C3AED", url:"https://sbi.co.in/careers" },
+  { title:"NDA & NA Exam Recruitment Updates", dept:"UPSC – National Defence",            posts:"404",   deadline:"Check Dates",  status:"open",  icon:"fas fa-khanda",       color:"#DC2626", url:"https://upsc.gov.in" },
+];
+
+const boards = [
+  { abbr:"BSEB",  name:"Bihar School Examination Board",   state:"Bihar",      color:"#1E6DC8", grad:"linear-gradient(135deg,#1E6DC8,#3B9EFF)", url:"https://biharboardonline.bihar.gov.in" },
+  { abbr:"UPMSP", name:"UP Madhyamik Shiksha Parishad",    state:"Uttar Pradesh", color:"#22C55E", grad:"linear-gradient(135deg,#22C55E,#0D9488)", url:"https://upmsp.edu.in" },
+  { abbr:"CBSE",  name:"Central Board of Secondary Edu.",  state:"Central",    color:"#E11D48", grad:"linear-gradient(135deg,#E11D48,#F97316)", url:"https://cbse.gov.in" },
+  { abbr:"CISCE", name:"Council for Indian School Cert.",  state:"Central",    color:"#7C3AED", grad:"linear-gradient(135deg,#7C3AED,#EC4899)", url:"https://cisce.org" },
+  { abbr:"MPBSE", name:"Madhya Pradesh Board of Edu.",     state:"Madhya Pradesh",color:"#D97706",grad:"linear-gradient(135deg,#D97706,#F59E0B)", url:"https://mpbse.nic.in"},
+  { abbr:"RBSE",  name:"Rajasthan Board of Secondary Edu.",state:"Rajasthan",  color:"#0891B2", grad:"linear-gradient(135deg,#0891B2,#06B6D4)", url:"https://rajeduboard.rajasthan.gov.in" },
+  { abbr:"JKBOSE",name:"JK Board of School Education",     state:"J&K",        color:"#059669", grad:"linear-gradient(135deg,#059669,#10B981)", url:"https://jkbose.nic.in" },
+  { abbr:"HBSE",  name:"Haryana Board of School Edu.",     state:"Haryana",    color:"#DC2626", grad:"linear-gradient(135deg,#DC2626,#EF4444)", url:"https://bseh.org.in" },
+];
+
+const results = [
+  { name:"Sarkari Result Main Dashboard",  meta:"Check Live Government Job Results", color:"#1E6DC8", icon:"fas fa-graduation-cap", status:"declared", url:"https://www.sarkariresult.com/result/" },
+  { name:"Bihar Board Official Results",  meta:"BSEB Matric & Inter Official Links", color:"#7C3AED", icon:"fas fa-scroll",         status:"declared", url:"https://biharboardonline.bihar.gov.in" },
+  { name:"BPSC Examination Results",           meta:"Bihar PSC Selection Lists Portal",        color:"#EC4899", icon:"fas fa-gopuram",        status:"declared", url:"https://bpsc.bih.nic.in" },
+  { name:"SSC Exam Results Panel",  meta:"Check Selection Lists & Scorecards",      color:"#22C55E", icon:"fas fa-user-shield",    status:"declared", url:"https://ssc.gov.in" },
+  { name:"RRB NTPC & Group D Marks",         meta:"Railway Non-Technical Active Link",     color:"#E11D48", icon:"fas fa-train",          status:"declared", url:"https://www.rrbcdg.gov.in" },
+  { name:"IBPS PO & Clerk Results",     meta:"Institute of Banking Personnel Portal",  color:"#16A34A", icon:"fas fa-landmark",       status:"declared", url:"https://ibps.in" },
+  { name:"UPSC CAPF Active Updates",         meta:"Central Armed Police Forces Link",     color:"#DC2626", icon:"fas fa-khanda",         status:"awaited", url:"https://upsc.gov.in"  },
+  { name:"JEE Main Scorecard Panel",     meta:"NTA Joint Entrance Exam Results",         color:"#2563EB", icon:"fas fa-atom",           status:"awaited", url:"https://jeemain.nta.nic.in"  },
+];
+
+const syllabus = [
+  { name:"UPSC CSE",   sub:"Download PDF Format",    icon:"fas fa-landmark",          bg:"#EFF6FF", color:"#1E6DC8", accent:"#1E6DC8", url:"https://www.sarkariresult.com/syllabus/" },
+  { name:"SSC CGL",    sub:"Tier I-IV Complete Topics",     icon:"fas fa-file-alt",          bg:"#F0FDF4", color:"#22C55E", accent:"#22C55E", url:"https://www.sarkariresult.com/syllabus/" },
+  { name:"BPSC",       sub:"PT + Mains Detailed Topics",  icon:"fas fa-gopuram",           bg:"#EDE9FE", color:"#7C3AED", accent:"#7C3AED", url:"https://www.sarkariresult.com/syllabus/" },
+  { name:"NEET UG",    sub:"Biology/Phy/Chem Syllabus",     icon:"fas fa-stethoscope",       bg:"#ECFDF5", color:"#059669", accent:"#059669", url:"https://www.sarkariresult.com/syllabus/" },
+  { name:"JEE Main",   sub:"Math/Phy/Chem Syllabus",        icon:"fas fa-atom",              bg:"#EFF6FF", color:"#2563EB", accent:"#2563EB", url:"https://www.sarkariresult.com/syllabus/" },
+  { name:"RRB NTPC",   sub:"CBT-1 & CBT-2 Full Pattern",        icon:"fas fa-train",             bg:"#FFF1F2", color:"#E11D48", accent:"#E11D48", url:"https://www.sarkariresult.com/syllabus/" },
+  { name:"Bihar Police",sub:"SI & Constable Exam Topics",      icon:"fas fa-shield-alt",        bg:"#F0F9FF", color:"#0284C7", accent:"#0284C7", url:"https://www.sarkariresult.com/syllabus/" },
+  { name:"CTET",       sub:"Paper 1 & Paper 2 Outline",    icon:"fas fa-chalkboard-teacher",bg:"#FFF7ED", color:"#D97706", accent:"#D97706", url:"https://www.sarkariresult.com/syllabus/" },
+];
+
+/* ========= RENDER GENERATION ========= */
+function renderExamCards(data) {
+  const grid = document.getElementById('examCardsGrid');
+  grid.innerHTML = '';
+  if (!data.length) {
+    document.getElementById('noResults').style.display = 'block';
+    return;
+  }
+  document.getElementById('noResults').style.display = 'none';
+  data.forEach(c => {
+    grid.innerHTML += `
+      <a href="${c.url}" target="_blank" class="exam-card-link">
+        <div class="exam-card" style="--card-accent:${c.accent}; --card-bg:${c.bg}; --card-color:${c.color};">
+          ${c.badge ? `<span class="card-badge badge-${c.badge}">${c.badge === 'hot' ? '🔥 Hot' : c.badge === 'new' ? '✨ New' : '⏳ Live'}</span>` : ''}
+          <div class="card-icon"><i class="${c.icon}"></i></div>
+          <div class="card-name">${c.name}</div>
+          <div class="card-sub">${c.sub}</div>
+        </div>
+      </a>`;
+  });
+}
+
+function renderVacancies() {
+  const list = document.getElementById('vacancyList');
+  list.innerHTML = '';
+  vacancies.forEach(v => {
+    const tagMap = {open:'tag-open',closed:'tag-closed',admit:'tag-admit',soon:'tag-soon',result:'tag-result'};
+    const labelMap = {open:'Apply Open',closed:'Closed',admit:'Admit Card',soon:'Coming Soon',result:'Result Out'};
+    list.innerHTML += `
+      <a href="${v.url}" target="_blank" class="vacancy-item-link">
+        <div class="vacancy-item">
+          <div class="vacancy-icon" style="background:${v.color}"><i class="${v.icon}"></i></div>
+          <div class="vacancy-info">
+            <div class="vacancy-title">${v.title}</div>
+            <div class="vacancy-meta">
+              <span><i class="fas fa-building"></i> ${v.dept}</span>
+              <span><i class="fas fa-users"></i> ${v.posts} Posts</span>
+            </div>
+          </div>
+          <span class="vacancy-tag ${tagMap[v.status]}">${labelMap[v.status]}</span>
+          <i class="fas fa-chevron-right vacancy-arrow"></i>
+        </div>
+      </a>`;
+  });
+}
+
+function renderBoards() {
+  const grid = document.getElementById('boardsGrid');
+  grid.innerHTML = '';
+  boards.forEach(b => {
+    grid.innerHTML += `
+      <div class="board-card" onclick="window.open('${b.url}', '_blank')">
+        <div class="board-logo" style="background:${b.grad}">${b.abbr}</div>
+        <div class="board-info">
+          <div class="board-name">${b.name}</div>
+          <div class="board-state"><i class="fas fa-map-pin" style="color:${b.color};font-size:.65rem"></i> ${b.state}</div>
+          <div class="board-links">
+            <span class="board-link-btn" style="background:var(--blue); color:white;">Visit Site</span>
+          </div>
+        </div>
+      </div>`;
+  });
+}
+
+function renderResults() {
+  const grid = document.getElementById('resultGrid');
+  grid.innerHTML = '';
+  results.forEach(r => {
+    const tag = r.status === 'declared'
+      ? `<span class="result-status tag-open">Declared</span>`
+      : `<span class="result-status tag-soon">Awaited</span>`;
+    grid.innerHTML += `
+      <a href="${r.url}" target="_blank" class="result-card-link">
+        <div class="result-card">
+          <div class="result-icon" style="background:${r.color}"><i class="${r.icon}"></i></div>
+          <div class="result-info">
+            <div class="result-name">${r.name}</div>
+            <div class="result-meta">${r.meta}</div>
+          </div>
+          ${tag}
+        </div>
+      </a>`;
+  });
+}
+
+function renderSyllabus() {
+  const grid = document.getElementById('syllabusGrid');
+  grid.innerHTML = '';
+  syllabus.forEach(c => {
+    grid.innerHTML += `
+      <a href="${c.url}" target="_blank" class="exam-card-link">
+        <div class="exam-card" style="--card-accent:${c.accent}; --card-bg:${c.bg}; --card-color:${c.color};">
+          <div class="card-icon"><i class="${c.icon}"></i></div>
+          <div class="card-name">${c.name}</div>
+          <div class="card-sub">${c.sub}</div>
+          <div style="font-size:.65rem;color:var(--blue);font-weight:600;display:flex;align-items:center;gap:4px"><i class="fas fa-download"></i> View PDF</div>
+        </div>
+      </a>`;
+  });
+}
+
+/* ========= SEARCH SYSTEM ========= */
+const allSearchable = [
+  ...examCards.map(c => ({...c, type:'Exam'})),
+  ...vacancies.map(v => ({name:v.title, sub:v.dept, type:'Vacancy', icon:v.icon, color:v.color, bg:'#F0FDF4', accent:v.color, url:v.url})),
+  ...results.map(r  => ({name:r.name,  sub:r.meta, type:'Result',  icon:r.icon, color:r.color, bg:'#FFF7ED', accent:r.color, url:r.url})),
+  ...syllabus.map(s => ({...s, type:'Syllabus'})),
+];
+
+const searchInput = document.getElementById('searchInput');
+const dropdown   = document.getElementById('search-results-dropdown');
+
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim().toLowerCase();
+  if (!q) { dropdown.classList.remove('active'); return; }
+  const hits = allSearchable.filter(i =>
+    i.name.toLowerCase().includes(q) || (i.sub && i.sub.toLowerCase().includes(q))
+  ).slice(0, 8);
+  if (!hits.length) { dropdown.classList.remove('active'); return; }
+  dropdown.innerHTML = hits.map(h => `
+    <div class="search-result-item" onclick="searchSelect('${h.name.replace(/'/g, "\\'")}', '${h.url}')">
+      <div class="search-result-icon" style="background:${h.bg};color:${h.color}"><i class="${h.icon}"></i></div>
+      <div>
+        <div style="font-weight:600;font-size:.85rem;color:var(--navy)">${h.name}</div>
+        <div style="font-size:.72rem;color:var(--mid-gray)">${h.sub || ''}</div>
+      </div>
+      <span class="search-result-tag">${h.type}</span>
+    </div>`).join('');
+  dropdown.classList.add('active');
+});
+
+function searchSelect(name, url) {
+  searchInput.value = name;
+  dropdown.classList.remove('active');
+  if(url && url !== 'undefined') {
+    window.open(url, '_blank');
+  } else {
+    performSearch();
+  }
+}
+
+function performSearch() {
+  const q = searchInput.value.trim().toLowerCase();
+  dropdown.classList.remove('active');
+  if (!q) { renderExamCards(examCards); return; }
+  const filtered = examCards.filter(c =>
+    c.name.toLowerCase().includes(q) || c.sub.toLowerCase().includes(q) || c.cat.toLowerCase().includes(q)
+  );
+  renderExamCards(filtered);
+  document.getElementById('examCategories').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+searchInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') performSearch();
+  if (e.key === 'Escape') dropdown.classList.remove('active');
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('.search-wrap')) dropdown.classList.remove('active');
+});
+
+/* ========= FILTER TABS ========= */
+function filterCategory(cat, btn) {
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  searchInput.value = '';
+  if (cat === 'all') { renderExamCards(examCards); return; }
+  renderExamCards(examCards.filter(c => c.cat === cat));
+}
+
+function toggleMobileNav() {
+  document.getElementById('mobileNav').classList.toggle('open');
+  document.getElementById('mobileOverlay').classList.toggle('open');
+}
+
+/* ========= COUNTDOWN RUNNER ========= */
+function updateCountdown() {
+  const target = new Date(); target.setDate(target.getDate() + 15); 
+  const now    = new Date();
+  const diff   = target - now;
+  if (diff <= 0) {
+    ['days','hours','mins','secs'].forEach(u => document.getElementById(`cd-${u}`).textContent = '00');
+    return;
+  }
+  const days  = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const mins  = Math.floor((diff % 3600000) / 60000);
+  const secs  = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
+  document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
+}
+
+/* ========= INIT PORTAL ========= */
+renderExamCards(examCards);
+renderVacancies();
+renderBoards();
+renderResults();
+renderSyllabus();
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
